@@ -36,7 +36,7 @@ final class User: PostgreSQLModel {
             return ""
         }
 
-        return data.base64EncodedString(options: Data.Base64EncodingOptions.lineLength76Characters)
+        return data.base64EncodedString(options: Data.Base64EncodingOptions.lineLength76Characters).base64URLEscaped()
     }
     
     static func createUserId(sessionId: String, username: String) -> String {
@@ -45,7 +45,7 @@ final class User: PostgreSQLModel {
         guard let data = userIdDecoded.data(using: String.Encoding.utf8) else {
             return ""
         }
-        return data.base64EncodedString(options: Data.Base64EncodingOptions.lineLength76Characters)
+        return data.base64EncodedString(options: Data.Base64EncodingOptions.lineLength76Characters).base64URLEscaped()
     }
 }
 
